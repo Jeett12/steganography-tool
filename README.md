@@ -73,11 +73,3 @@ MAGIC + FLAGS + SALT + MESSAGE_LENGTH + MESSAGE_BYTES
 ```
 
 The password option XORs the message bytes with a SHA-256 based keystream. This is useful for learning and project demonstration purposes. For high-security encryption, a professional cryptography library should be used.
-
-## Viva Questions
-
-- What is LSB steganography?
-- How is image capacity calculated?
-- Why does PNG filtering need to be decoded?
-- What changes when a password is used?
-- What is the difference between steganography and encryption?
