@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+cover.png
+secret.png
+secret_password.png
+hidden_*.png
+myphoto*.png
+message.txt
