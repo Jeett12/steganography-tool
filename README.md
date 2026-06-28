@@ -74,10 +74,3 @@ MAGIC + FLAGS + SALT + MESSAGE_LENGTH + MESSAGE_BYTES
 
 Password option message bytes ko SHA-256 based keystream se XOR karta hai. Ye learning/project demo ke liye useful hai, high-security encryption ke liye professional cryptography library use karni chahiye.
 
-## Project Ideas For Viva
-
-- LSB steganography kya hota hai?
-- Image capacity kaise calculate hoti hai?
-- PNG filtering ko decode kyu karna padta hai?
-- Password option se extraction me kya change hota hai?
-- Steganography aur encryption me difference kya hai?
