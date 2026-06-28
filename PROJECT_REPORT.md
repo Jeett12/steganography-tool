@@ -2,11 +2,11 @@
 
 ## Aim
 
-Is project ka aim ek command-line tool banana hai jo PNG image ke andar secret text hide aur extract kar sake using Least Significant Bit steganography.
+The aim of this project is to create a command-line tool that can hide and extract secret text inside PNG images using Least Significant Bit (LSB) steganography.
 
 ## Problem Statement
 
-Normal image dekhne par secret message visible nahi hona chahiye, lekin correct tool se message recover ho jana chahiye.
+The secret message should not be visible when the image is opened normally, but it should be recoverable using the correct extraction tool.
 
 ## Technology Used
 
@@ -17,60 +17,60 @@ Normal image dekhne par secret message visible nahi hona chahiye, lekin correct 
 
 ## Algorithm
 
-### Hide
+### Hide Operation
 
-1. Input PNG image read karo.
-2. PNG image data decompress karo.
-3. Secret message ko UTF-8 bytes me convert karo.
-4. Message header add karo: magic value, flags, salt, length.
-5. Har message bit ko image pixel bytes ke least significant bit me store karo.
-6. Modified image data ko compress karke new PNG save karo.
+1. Read the input PNG image.
+2. Decompress the PNG image data.
+3. Convert the secret message into UTF-8 bytes.
+4. Add a message header containing the magic value, flags, salt, and message length.
+5. Store each message bit inside the least significant bit of the image pixel bytes.
+6. Compress the modified image data and save it as a new PNG file.
 
-### Extract
+### Extract Operation
 
-1. Stego PNG image read karo.
-2. Pixel bytes ke least significant bits read karo.
-3. Header se message length aur flags identify karo.
-4. Message bytes recover karo.
-5. Agar password enabled hai to same password se decode karo.
-6. UTF-8 text print ya file me save karo.
+1. Read the stego PNG image.
+2. Read the least significant bits from the pixel bytes.
+3. Identify the message length and flags from the header.
+4. Recover the hidden message bytes.
+5. If password protection is enabled, decode the message using the same password.
+6. Print the recovered UTF-8 text or save it to a file.
 
 ## Modules
 
-- `load_png`: PNG chunks parse aur image data decode karta hai.
-- `save_png`: Modified pixel data ko PNG file me write karta hai.
-- `embed_message`: Secret message image me hide karta hai.
-- `extract_message`: Hidden message image se recover karta hai.
-- `image_capacity`: Image me kitna message fit hoga batata hai.
-- `make_sample_cover`: Demo ke liye sample PNG banata hai.
+- `load_png`: Parses PNG chunks and decodes image data.
+- `save_png`: Writes modified pixel data back into a PNG file.
+- `embed_message`: Hides the secret message inside the image.
+- `extract_message`: Recovers the hidden message from the image.
+- `image_capacity`: Calculates how many message bytes can fit in the image.
+- `make_sample_cover`: Creates a sample PNG image for demonstration.
 
 ## Advantages
 
-- External dependency ki zarurat nahi.
-- Command line se easy use.
-- Message invisible rehta hai under normal viewing.
-- Password option available hai.
+- No external dependency is required.
+- The tool is easy to use from the command line.
+- The hidden message is not visible during normal image viewing.
+- Optional password-based protection is available.
 
 ## Limitations
 
-- Sirf 8-bit non-interlaced PNG supported hai.
-- Password feature learning/demo level obfuscation hai, professional encryption nahi.
-- Heavy image compression ya editing hidden data ko corrupt kar sakti hai.
+- Only 8-bit non-interlaced PNG images are supported.
+- The password feature is demonstration-level obfuscation, not professional encryption.
+- Image editing, heavy compression, or format conversion may corrupt the hidden data.
 
 ## Test Cases
 
 | Test | Expected Result |
 | --- | --- |
-| Sample cover create | PNG file create hoti hai |
-| Capacity check | Available bytes print hote hain |
-| Hide normal message | Output stego PNG create hoti hai |
-| Extract normal message | Original message print hota hai |
-| Extract password message without password | Error show hota hai |
-| Extract password message with password | Original message print hota hai |
+| Create sample cover image | A PNG file is created |
+| Check capacity | Available message capacity is displayed |
+| Hide normal message | A stego PNG image is created |
+| Extract normal message | The original message is displayed |
+| Extract password message without password | An error message is displayed |
+| Extract password message with password | The original message is displayed |
 
 ## Future Scope
 
-- JPG support add karna.
-- GUI interface banana.
-- Strong cryptography library integrate karna.
-- File hiding support add karna, sirf text nahi.
+- Add JPG support.
+- Add a graphical user interface.
+- Integrate a strong cryptography library.
+- Add support for hiding files, not only text messages.

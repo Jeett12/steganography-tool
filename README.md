@@ -1,32 +1,32 @@
 # PNG Steganography Tool
 
-Ek simple Python project jo PNG image ke andar secret text hide aur extract karta hai using LSB steganography.
+A simple Python command-line project that hides and extracts secret text inside PNG images using Least Significant Bit (LSB) steganography.
 
 ## Features
 
-- Hide text message in PNG image
-- Extract hidden message
-- Optional password-based obfuscation
-- Capacity check
-- Sample cover image generator
+- Hide a text message inside a PNG image
+- Extract a hidden message from a stego image
+- Optional password-based message obfuscation
+- Image capacity checking
+- Sample cover image generation
 - No external Python packages required
 
 ## Requirements
 
-- Python 3.10+
-- PNG image, preferably RGB/RGBA
+- Python 3.10 or later
+- A PNG image, preferably RGB or RGBA
 
-Supported PNG format: 8-bit, non-interlaced grayscale, RGB, grayscale+alpha, or RGBA.
+Supported PNG format: 8-bit, non-interlaced grayscale, RGB, grayscale with alpha, or RGBA.
 
-## Commands
+## Usage
 
-Create sample cover image:
+Create a sample cover image:
 
 ```bash
 python steg_tool.py sample-cover -o cover.png
 ```
 
-Check capacity:
+Check image capacity:
 
 ```bash
 python steg_tool.py capacity -i cover.png
@@ -35,28 +35,28 @@ python steg_tool.py capacity -i cover.png
 Hide a message:
 
 ```bash
-python steg_tool.py hide -i cover.png -o secret.png -m "Bhai ye secret message hai"
+python steg_tool.py hide -i cover.png -o secret.png -m "This is a secret message"
 ```
 
-Hide with password:
+Hide a message with a password:
 
 ```bash
 python steg_tool.py hide -i cover.png -o secret.png -m "Top secret" -p mypass123
 ```
 
-Extract message:
+Extract a message:
 
 ```bash
 python steg_tool.py extract -i secret.png
 ```
 
-Extract password-protected message:
+Extract a password-protected message:
 
 ```bash
 python steg_tool.py extract -i secret.png -p mypass123
 ```
 
-Save extracted text to a file:
+Save the extracted text to a file:
 
 ```bash
 python steg_tool.py extract -i secret.png -o message.txt
@@ -64,7 +64,7 @@ python steg_tool.py extract -i secret.png -o message.txt
 
 ## How It Works
 
-Image ke pixel bytes ke least significant bit me message bits store hote hain. Pixel value me sirf 1 bit ka change hota hai, isliye visual difference normally dikhta nahi.
+The tool stores message bits in the least significant bits of the image pixel bytes. Only one bit of each pixel byte is changed, so the visual difference is normally not noticeable.
 
 Payload format:
 
@@ -72,5 +72,12 @@ Payload format:
 MAGIC + FLAGS + SALT + MESSAGE_LENGTH + MESSAGE_BYTES
 ```
 
-Password option message bytes ko SHA-256 based keystream se XOR karta hai. Ye learning/project demo ke liye useful hai, high-security encryption ke liye professional cryptography library use karni chahiye.
+The password option XORs the message bytes with a SHA-256 based keystream. This is useful for learning and project demonstration purposes. For high-security encryption, a professional cryptography library should be used.
 
+## Viva Questions
+
+- What is LSB steganography?
+- How is image capacity calculated?
+- Why does PNG filtering need to be decoded?
+- What changes when a password is used?
+- What is the difference between steganography and encryption?
